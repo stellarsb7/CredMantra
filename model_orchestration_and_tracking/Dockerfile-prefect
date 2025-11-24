@@ -1,0 +1,10 @@
+FROM python:3.9.16-slim
+
+RUN pip install --no-cache-dir prefect==2.10.9
+
+RUN mkdir /tmp/store
+
+EXPOSE 4200
+EXPOSE 8081
+
+CMD prefect config set PREFECT_UI_API_URL=$LOCAL_PREFECT_ADDRESS && prefect server start --host 0.0.0.0
